@@ -11,6 +11,7 @@ import random
 from wikipedia.wikipedia import languages
 edge_path="C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 google = "https://www.google.com"
+ss = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -98,10 +99,35 @@ if __name__ == "__main__":
             print(a)
             speak(a)
 
+        elif 'cmd' in query:
+            cmdPath = "C:\\WINDOWS\\system32\\cmd.exe"
+            os.startfile(cmdPath)
+
+        elif 'open code' in query:
+            codePath = "C:\\Users\Harsh Mavani\\AppData\Local\\Programs\Microsoft VS Code\\Code.exe"
+            os.startfile(codePath)
+
+        elif 'my video' in query:
+            webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
+            webbrowser.get('edge').open("youtube.com")
+            pg.hotkey('f4',interval = '0.35')
+            pg.press('tab' , presses=2, interval= '0.35')
+            pg.write("tbomb ka baap" , interval='0.01')
+            pg.press('enter')
 
         elif 'open youtube' in query:
             webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
             webbrowser.get('edge').open("youtube.com")
+            pg.hotkey('f4',interval = '0.35')
+            pg.press('tab' , presses=2, interval= '0.35')
+
+        elif 'open youtube with mic' in query:
+            webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
+            webbrowser.get('edge').open("youtube.com")
+            pg.hotkey('f4' , interval= '0.25')
+            pg.press('tab' , presses=4 , interval='0.25')
+            pg.press('enter')
+
 
         elif 'open whatsapp' in query:
             webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
@@ -121,11 +147,21 @@ if __name__ == "__main__":
         elif 'my friend site' in query:
             webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
             webbrowser.get('edge').open('omsangani.ml')
-
-         
-        elif 'cmd' in query:
-            cmdPath = "C:\\WINDOWS\\system32\\cmd.exe"
-            os.startfile(cmdPath)
+        elif 'my all friend website' in query:
+            webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
+            webbrowser.get('edge').open('omsangani.ml')
+            webbrowser.get('edge').open('princekhunt.com')
+            webbrowser.get('edge').open('aboutkelvis.gq')
+        elif 'my all friend in instagram' in query:
+            webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
+            webbrowser.get('edge').open('https://www.instagram.com/omsangani29/')
+            webbrowser.get('edge').open('https://www.instagram.com/prince._khunt/')
+            webbrowser.get('edge').open('https://www.instagram.com/aryan_03.12/')
+            webbrowser.get('edge').open('https://www.instagram.com/harshvirani09/')
+            webbrowser.get('edge').open('https://www.instagram.com/7.yug__/')
+            webbrowser.get('edge').open('https://www.instagram.com/smit_1803/')
+            webbrowser.get('edge').open('https://www.instagram.com/kelvis__k/')
+            webbrowser.get('edge').open('https://www.instagram.com/vats_0712/')
 
         elif 'play music' in query:
             music_dir = 'D:\\Non Critical\\songs\\Favorite Songs2'
@@ -137,10 +173,6 @@ if __name__ == "__main__":
             strTime = datetime.datetime.now().strftime("%H:%M:%S")    
             speak(f"Sir, the time is {strTime}")
 
-        elif 'open code' in query:
-            codePath = "C:\\Users\Harsh Mavani\\AppData\Local\\Programs\Microsoft VS Code\\Code.exe"
-            os.startfile(codePath)
-       
 
         elif 'mail to harsh' in query:
             try:
@@ -148,7 +180,60 @@ if __name__ == "__main__":
                 content = takeCommand()
                 to = "harshmavani000786@gmail.com"    
                 sendEmail(to, content)
-                speak("Email Vaii Gayo")
+                speak("Email Has Been Sent")
             except Exception as e:
                 print(e)
                 speak("Sorry my friend harsh bhai. I am not able to send this email")    
+
+        elif 'mail to om' in query:
+            try:
+                speak("What should I say?")
+                content = takeCommand()
+                to = "omsangani29@gmail.com"    
+               
+            except Exception as e:
+                print(e)
+                speak("Sorry my friend harsh bhai. I am not able to send this email")   
+
+             
+        
+        elif 'take screenshot' in query:
+            speak('oohk')
+            myScreenshot = pg.screenshot()
+            myScreenshot.save(r'H:\\Python Coding Projects\\pyss\\'+random.choice(ss)+'.png')
+            speak('done')
+            speak('Tell Me More ')
+        
+        elif 'send file to sangani' in query:
+            webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
+            webbrowser.get('edge').open("mail.google.com")
+            pg.sleep(5)
+            pg.press('tab' , presses=12)
+            pg.press('enter')
+            pg.sleep(1)
+            pg.press('tab' , presses=5)
+            pg.press('enter')
+
+        else:
+            if  ' in youtube' in query:
+                speak('According To Youtube')
+                webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
+                webbrowser.get('edge').open("youtube.com")
+                pg.hotkey('f4',interval = '0.45')
+                pg.press('tab' , presses=2, interval= '0.45')
+                pg.write(query)
+                pg.sleep(2)
+                pg.press('enter')
+
+            else:
+                speak('According to google')
+                webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
+                webbrowser.get('edge').open('google.com')
+                pg.hotkey('f4',interval = '0.45')
+                pg.write(query)
+                pg.sleep(2)
+                pg.press('enter')
+                
+
+
+
