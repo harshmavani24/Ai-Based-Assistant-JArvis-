@@ -90,6 +90,37 @@ if __name__ == "__main__":
         elif 'open code' in query:
             codePath = "C:\\Users\Harsh Mavani\\AppData\Local\\Programs\Microsoft VS Code\\Code.exe"
             os.startfile(codePath)
+        elif 'sleep' in query:
+            pg.keyDown('win')
+            pg.press('x')
+            pg.keyUp('win')
+            pg.press('up', presses=2)
+            pg.press('enter')
+            pg.press('down')
+            pg.press('enter')
+        elif 'log out' in query or 'sign out' in query:
+            pg.keyDown('win')
+            pg.press('x')
+            pg.keyUp('win')
+            pg.press('up', presses=2)
+            pg.press('enter', presses=2)
+        elif 'shutdown' in query or 'turn off' in query:
+            pg.keyDown('win')
+            pg.press('x')
+            pg.keyUp('win')
+            pg.press('up', presses=2)
+            pg.press('enter')
+            pg.press('down' , presses=2)
+            pg.press('enter')
+        elif 'restart' in query:
+            pg.keyDown('win')
+            pg.press('x')
+            pg.keyUp('win')
+            pg.press('up', presses=2)
+            pg.press('enter')
+            pg.press('up')
+            pg.press('enter')
+
         elif 'take screenshot' in query:
             speak('oohk')
             myScreenshot = pg.screenshot()
@@ -238,6 +269,8 @@ if __name__ == "__main__":
             except exceptions as e:
                 print(e)
                 speak("Sorry Sir, I can't send your message.")
+
+        
         else:
             if  'search youtube' in query:
                 speak('According To Youtube')
@@ -248,11 +281,10 @@ if __name__ == "__main__":
                 pg.press('d')
                 pg.keyUp('alt')
                 pg.press('tab' , presses=12)
-                try:
                 pg.write(query)
                 pg.sleep(2)
                 pg.press('enter')
-            elif:
+            else:
                 speak('According to google')
                 webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
                 webbrowser.get('edge').open('google.com')
