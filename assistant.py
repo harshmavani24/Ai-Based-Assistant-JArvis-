@@ -149,16 +149,22 @@ if __name__ == "__main__":
         elif 'open stack overflow' in query:
             webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
             webbrowser.get('edge').open("stackoverflow.com")   
-        elif 'open new tab' in query:
+        elif 'open new tab' in query or 'open google' in query:
             webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
             webbrowser.get('edge').open('google.com')
-        elif 'open my site' in query:
+        elif 'open my site' in query or 'my website' in query :
             webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
             webbrowser.get('edge').open('mhmsecurity.ml')
+#windows Fecture
         elif 'minimize window' in query or 'minimise window' in query:
             speak("minimizing windows")
             pg.keyDown('win')
             pg.press('m')
+            pg.keyUp('win')
+        elif 'open settings' in query or 'settings' in query or 'open sattings' in query or 'setting' in query or 'open satting':
+            speak("opaning settings")
+            pg.keyDown('win')
+            pg.press('i')
             pg.keyUp('win')
         elif 'switch window' in query or 'switch window' in query:
             speak("switching windows")
@@ -170,7 +176,9 @@ if __name__ == "__main__":
             pg.keyDown('alt')
             pg.press('f4')
             pg.keyUp('alt')
-            #joke with python
+        #elif 'delete file' in query or 'delete folder' in query:
+
+#joke with python
         elif 'joke' in query or 'jok' in query or 'juke' in query:
             a = pyjokes.get_joke()
             print(a)
@@ -185,12 +193,12 @@ if __name__ == "__main__":
                     elif content3 == "no":
                         speak("Thanks for listining my jokes.")
                         break
-            #calculator
+#calculator
         elif 'open calcultor' in query:
             os.startfile("C:\\Windows\\System32\\calc.exe")
         elif 'open kali' in query:
             os.startfile("C:\\Windows\\System32\\bash.exe")
-            #friends 
+#friends 
         elif 'my friend site' in query:
             webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
             webbrowser.get('edge').open('omsangani.ml')
