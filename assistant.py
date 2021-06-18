@@ -1,3 +1,4 @@
+from time import time
 import pyttsx3 #pip install pyttsx3
 import speech_recognition as sr #pip install speechRecognition
 import datetime
@@ -10,6 +11,7 @@ import random
 from wikipedia import exceptions
 import pyjokes
 from wikipedia.wikipedia import languages
+import time , requests
 edge_path="C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 google = "https://www.google.com"
 ss = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
@@ -161,7 +163,7 @@ if __name__ == "__main__":
             pg.keyDown('win')
             pg.press('m')
             pg.keyUp('win')
-        elif 'open settings' in query or 'settings' in query or 'open sattings' in query or 'setting' in query or 'open satting':
+        elif 'open settings' in query:
             speak("opaning settings")
             pg.keyDown('win')
             pg.press('i')
@@ -180,7 +182,7 @@ if __name__ == "__main__":
 
 #joke with python
         elif 'joke' in query or 'jok' in query or 'juke' in query:
-            a = pyjokes.get_joke()
+            a = pyjokes.get_joke(language='en', category='all')
             print(a)
             speak(a)
             while True:
@@ -198,6 +200,12 @@ if __name__ == "__main__":
             os.startfile("C:\\Windows\\System32\\calc.exe")
         elif 'open kali' in query:
             os.startfile("C:\\Windows\\System32\\bash.exe")
+
+        elif 'news' in query:
+            webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
+            webbrowser.get('edge').open("https://timesofindia.indiatimes.com/home/headlines")
+            speak('Here are some headlines from the Times of India,Happy reading')
+            time.sleep(6)
 #friends 
         elif 'my friend site' in query:
             webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
@@ -278,25 +286,33 @@ if __name__ == "__main__":
                 print(e)
                 speak("Sorry Sir, I can't send your message.")
 
+#Whether in AI
+        elif "weather" in query:
+            api_key = "6cdda53a809c9476d52c4493939e538f"
+            base_url = "https://api.openweathermap.org/data/2.5/weather?"
+            speak("what is the city name")
+            city_name = takeCommand()
+            complete_url = base_url+"appid="+api_key+"&q="+city_name
+            response = requests.get(complete_url)
+            x = response.json()
+            if x["cod"] != "404":
+                y = x["main"]
+                current_temperature = y["temp"]
+                current_humidiy = y["humidity"]
+                z = x["weather"]
+                weather_description = z[0]["description"]
+                speak(" Temperature in kelvin unit is " +str(current_temperature) +"\n humidity in percentage is " +str(current_humidiy) +"\n description " + str(weather_description))
+                print(" Temperature in kelvin unit = " + str(current_temperature) +"\n humidity (in percentage) = " +str(current_humidiy) +"\n description = " +str(weather_description))
+
         
         else:
-            if  'search youtube' in query:
+            if  ' in youtube' in query:
                 speak('According To Youtube')
                 webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
-                webbrowser.get('edge').open("youtube.com")
-                pg.sleep(2)
-                pg.keyDown('alt')
-                pg.press('d')
-                pg.keyUp('alt')
-                pg.press('tab' , presses=12)
-                pg.write(query)
-                pg.sleep(2)
-                pg.press('enter')
+                webbrowser.get('edge').open("https://www.youtube.com/results?search_query="+query)
+                
             else:
                 speak('According to google')
                 webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
-                webbrowser.get('edge').open('google.com')
-                pg.hotkey('f4',interval = '0.45')
-                pg.write(query)
-                pg.sleep(2)
-                pg.press('enter')
+                webbrowser.get('edge').open('https://www.google.com/search?q='+query)
+                
