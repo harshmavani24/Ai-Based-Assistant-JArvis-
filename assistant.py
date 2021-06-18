@@ -16,6 +16,7 @@ edge_path="C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 google = "https://www.google.com"
 ss = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 engine = pyttsx3.init('sapi5')
+engine. setProperty("rate", 152)
 voices = engine.getProperty('voices')
 # print(voices[1].id)
 engine.setProperty('voice', voices[1].id)
@@ -287,7 +288,7 @@ if __name__ == "__main__":
                 speak("Sorry Sir, I can't send your message.")
 
 #Whether in AI
-        elif "weather" in query:
+        elif "weather" in query or 'vedar' in query:
             api_key = "6cdda53a809c9476d52c4493939e538f"
             base_url = "https://api.openweathermap.org/data/2.5/weather?"
             speak("what is the city name")
@@ -303,6 +304,12 @@ if __name__ == "__main__":
                 weather_description = z[0]["description"]
                 speak(" Temperature in kelvin unit is " +str(current_temperature) +"\n humidity in percentage is " +str(current_humidiy) +"\n description " + str(weather_description))
                 print(" Temperature in kelvin unit = " + str(current_temperature) +"\n humidity (in percentage) = " +str(current_humidiy) +"\n description = " +str(weather_description))
+
+        elif 'github' in query:
+            webbrowser.register(
+                'edge', None, webbrowser.BackgroundBrowser(edge_path))
+            webbrowser.get('edge').open(
+                "https://github.com/white-devil0786")
 
         
         else:
